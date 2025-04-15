@@ -14,22 +14,18 @@ class TestCalculoNumeros(unittest.TestCase):
     def test_ingreso_feliz(self, patch_input):
         numero = ingrese_numero()
         self.assertEqual(numero, 100)
-
-    @patch(  # este patch controla lo que hace el input
-        'builtins.input',
-        return_value='-100'
-    )
+    
+    @patch('builtins.input', return_value='-100')
     def test_ingreso_negativo(self, patch_input):
+        from src.exceptions import ingrese_numero, NumeroDebeSerPositivo
         with self.assertRaises(NumeroDebeSerPositivo):
             ingrese_numero()
 
-    @patch(  # este patch controla lo que hace el input
-        'builtins.input',
-        return_value='AAA'
-    )
+     @patch('builtins.input', return_value='AAA')
     def test_ingreso_letras(self, patch_input):
-<<<<<<< Updated upstream
-=======
+  feature/implementar-prueba-letra
+        from src.exceptions import ingrese_numero
+
         from src.exceptions import ingrese_numero
         with self.assertRaises(ValueError):
             ingrese_numero()
@@ -41,9 +37,9 @@ class TestCalculoNumeros(unittest.TestCase):
     
     @patch('builtins.input', return_value='12abc')
     def test_ingreso_alfanumerico(self, patch_input):
->>>>>>> Stashed changes
+
+        main
         with self.assertRaises(ValueError):
             ingrese_numero()
 
-if __name__ == '__main__':
-    unittest.main() 
+ 
